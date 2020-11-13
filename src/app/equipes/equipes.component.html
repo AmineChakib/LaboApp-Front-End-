@@ -1,0 +1,70 @@
+
+
+<br><br><br>
+<div class="container" *ngIf="equipes">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Liste des equipes:</div><br>
+
+    <button class="btn btn-success"><i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
+    <div class="panel-body">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Equipes</th>
+            <th>Les Membres de l'équipe</th>
+            <th>Chef d'equipe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of equipes._embedded.equipes">
+            <th scope="row">Equipe {{e.id}}</th>
+            <td *ngIf='e.members'>
+              <div *ngFor="let u of e.members._embedded.users">
+                <p>{{u.nom}} {{u.prenom}}</p>
+              </div>
+            </td>
+            <td *ngIf='e.members'>
+              <div *ngFor="let u of e.members._embedded.users">
+                <div  *ngIf="u.chefEquipe">
+                  {{u.prenom}} {{u.nom}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<!--    <table class="table">
+          <tr>
+            <th>Equipes</th><th>Members</th><th>Chef d'equipe</th>
+          </tr>
+          <tr *ngFor="let e of equipes._embedded.equipes">
+            <th>Equipe: {{e.id}}</th>
+            <div *ngIf='e.members'>
+              <td *ngFor="let u of e.members._embedded.users">
+                <div>
+                  <p>{{u.nom}} {{u.prenom}}</p><br/>
+                </div>
+              </td>
+            </div>
+            <td *ngFor="let u of e.members._embedded.users">
+              <div *ngIf="u.role == 'chefEquipe'">
+                {{u.prenom}} {{u.nom}}
+              </div>
+            </td>
+          </tr>
+      </table> -->
+    </div>
+  </div>
+</div>
+
+
+
+<!--<table *ngIf="listUser" class="table">
+
+  <tr *ngFor="let f of listUser._embedded.users">
+    <td>{{f.id}}</td>
+    <td>{{f.nom}}</td>
+    <td>{{f.prenom}}</td>
+  </tr>
+</table>-->
+

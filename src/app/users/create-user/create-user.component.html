@@ -1,0 +1,44 @@
+<div class="col-md-6 offset-md-3">
+  <br>
+  <h3>Create User</h3>
+<form (ngSubmit)="onSubmit()" action="">
+  <div class="form-group">
+    <label for="">First Name</label>
+    <input type="text" class="form-control" id="prenom" [(ngModel)] = "user.prenom" name='prenom'>
+  </div>
+  <div class="form-group">
+    <label for="">Last Name</label>
+    <input type="text" class="form-control" id="nom" [(ngModel)] = "user.nom" name='nom'>
+  </div>
+  <div class="form-group">
+    <label for="">CNE</label>
+    <input type="text" class="form-control" id="username" [(ngModel)] = "user.username" name='username'>
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input type="email" class="form-control" id="email" [(ngModel)] = "user.email" name='email'>
+  </div>
+  <div class="form-group">
+    <label for="">Password</label>
+    <input type="text" class="form-control" id="pwd" [(ngModel)] = "user.pwd" name='pwd'>
+  </div>
+  <div>
+  <div class="form-group">
+      <label>Fonction</label>
+      <select name="fonction" [(ngModel)]="user.fonction" id="fonction" class="form-control" name='fonction'>
+          <option *ngFor="let fonction of fonctions" [value]="fonction.value">
+          {{fonction.display}}
+          </option>
+      </select>
+  </div>
+  <!--<div class="form-group">
+    <label>
+      <input type="checkbox" class="form-control" id="chefEquipe" [(ngModel)]="user.chefEquipe" name="chefEquipe" >
+      Chef d'équipe
+    </label>
+  </div>-->
+  </div>
+  <button class="btn btn-success" type="submit">Ajouter</button>
+</form>
+
+</div>

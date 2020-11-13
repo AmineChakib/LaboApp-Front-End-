@@ -1,0 +1,40 @@
+
+
+<br><br><br>
+<div class="container" *ngIf="listUser">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h1 style="font-family:verdana;">Liste des utilisateur:</h1></div><br>
+  <!-- Search form -->
+  <form class="form-inline d-flex pull-right md-form form-sm active-purple-2 mt-2">
+    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Enter CNE to Search"
+    aria-label="Search" name="username" [(ngModel)] = "username" (ngModelChange)="Search()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+  </form>
+    <button class="btn btn-success" (click)="router.navigate(['/create-user']);"><i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
+    <div class="panel-body table-responsive text-nowrap">
+      <table class="table table-striped">
+          <tr>
+            <th>CNE</th><th>Nom</th><th>Prénom</th><th>Métier</th><th>Actions</th>
+          </tr>
+          <tr *ngFor="let u of listUser">
+            <td>{{u.username}}</td>
+            <td>{{u.nom}}</td>
+            <td>{{u.prenom}}</td>
+            <td>{{u.fonction}}</td>
+            <td>
+              <button (click)="updateUser(u.id)" class="btn btn-info"> Update</button>
+              <button (click)="deleteUser(u.id)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!--<table *ngIf="listUser" class="table">
+
+  <tr *ngFor="let f of listUser._embedded.users">
+    <td>{{f.id}}</td>
+    <td>{{f.nom}}</td>
+    <td>{{f.prenom}}</td>
+  </tr>
+</table>-->

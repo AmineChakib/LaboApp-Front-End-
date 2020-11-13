@@ -1,0 +1,20 @@
+<div class="col-md-6 offset-md-3">
+  <br>
+  <h3>Create These:</h3>
+<form (ngSubmit)="onSubmit()" action="">
+  <div class="form-group">
+    <label for="">Titre</label>
+    <input type="text" class="form-control" id="titre" [(ngModel)] = "these.titre" name='titre'>
+  </div>
+  <div>
+  <!--<div class="form-group">
+    <label>
+      <input type="checkbox" class="form-control" id="chefEquipe" [(ngModel)]="user.chefEquipe" name="chefEquipe" >
+      Chef d'équipe
+    </label>
+  </div>-->
+  </div>
+  <button class="btn btn-success" type="submit">Ajouter</button>
+</form>
+
+</div>
