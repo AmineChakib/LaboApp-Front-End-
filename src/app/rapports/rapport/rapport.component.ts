@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { RapportService } from 'src/app/services/rapport.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rapport',
@@ -12,7 +13,9 @@ export class RapportComponent implements OnInit {
   titre;
   listRapports;
   listRpportsOriginal;
-  constructor(private httpClient: HttpClient, public router: Router, public rapportService: RapportService) { }
+  closeResult = '';
+  constructor(private httpClient: HttpClient, public router: Router, public rapportService: RapportService,
+     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.httpClient.get("http://localhost:8088/rapports").subscribe(data=>{
@@ -23,10 +26,17 @@ export class RapportComponent implements OnInit {
     })
   }
   updateRapport(id: number) {
-
+    this.router.navigate(['update-rapport', id]);
   }
   deleteRapport(id: number) {
-
+    this.rapportService.deleteRapport(id).subscribe(data =>{
+      this.httpClient.get("http://localhost:8088/rapports").subscribe(data =>{
+        this.listRapports = data;
+        this.listRapports = this.listRapports._embedded.rapports;
+      })
+    }, err =>{
+      console.log(err);
+    })
   }
   Search(){
     if(this.titre == "") {
@@ -37,6 +47,23 @@ export class RapportComponent implements OnInit {
       this.listRapports = this.listRpportsOriginal.filter(res =>{
         return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
       })
+    }
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 }

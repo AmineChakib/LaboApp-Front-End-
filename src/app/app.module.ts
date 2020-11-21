@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,6 +17,7 @@ import { CreateTheseComponent } from './these/create-these/create-these.componen
 import { UpdateTheseComponent } from './these/update-these/update-these.component';
 import { CreateTheseSoutenuComponent } from './these-soutenu/create-these-soutenu/create-these-soutenu.component';
 import { UpdateTheseSoutenuComponent } from './these-soutenu/update-these-soutenu/update-these-soutenu.component';
+import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport.component';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { UpdateTheseSoutenuComponent } from './these-soutenu/update-these-souten
     UpdateTheseComponent,
     CreateTheseSoutenuComponent,
     UpdateTheseSoutenuComponent,
+    UpdateRapportComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { UpdateTheseSoutenuComponent } from './these-soutenu/update-these-souten
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

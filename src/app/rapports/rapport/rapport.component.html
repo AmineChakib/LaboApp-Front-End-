@@ -18,6 +18,27 @@
             <td>{{r.titre}}</td>
             <td><a href="{{rapportService.host+'/rapport/'+r.id}}" target="_blank">{{r.path}}</a></td>
             <td>
+
+              <!--<ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="">Title</label>
+                      <input type="text" class="form-control" id="titre" [(ngModel)] = "r.titre" name='titre'>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); updateRapport(r.id)">Save</button>
+                </div>
+              </ng-template>-->
+
               <button (click)="updateRapport(r.id)" class="btn btn-info"> Update</button>
               <button (click)="deleteRapport(r.id)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
             </td>

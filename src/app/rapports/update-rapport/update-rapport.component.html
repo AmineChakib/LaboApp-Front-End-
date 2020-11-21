@@ -10,12 +10,7 @@
     <label for="exampleFormControlFile">Upload File</label>
     <input type="file" class="form-control-file" [(ngModel)] = "rapport.path" id="exampleFormControlFile">
   </div>-->
-  <div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file" id="file" (change)="onFileSelected($event)" [(ngModel)] = "rapport.file" name="file">
-  </div>
-
-  <button class="btn btn-success" type="submit" (click) = "onUpload(rapport.titre)">Ajouter</button>
+  <button class="btn btn-success" type="submit">Update</button>
 </form>
 
 </div>

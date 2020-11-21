@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EquipesComponent } from './equipes/equipes.component';
 import { CreateRapportComponent } from './rapports/create-rapport/create-rapport.component';
 import { RapportComponent } from './rapports/rapport/rapport.component';
+import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport.component';
 import { CreateTheseSoutenuComponent } from './these-soutenu/create-these-soutenu/create-these-soutenu.component';
 import { TheseSoutenuComponent } from './these-soutenu/these-soutenu.component';
 import { UpdateTheseSoutenuComponent } from './these-soutenu/update-these-soutenu/update-these-soutenu.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
 
   {path: "rapports", component: RapportComponent},
   {path: "create-rapport", component: CreateRapportComponent},
+  {path: "update-rapport/:id", component: UpdateRapportComponent},
 
   {path: "theses", component: TheseComponent},
   {path: "create-these", component: CreateTheseComponent},
