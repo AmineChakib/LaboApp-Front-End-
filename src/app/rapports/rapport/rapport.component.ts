@@ -11,12 +11,13 @@ import { RapportService } from 'src/app/services/rapport.service';
 export class RapportComponent implements OnInit {
   titre;
   listRapports;
+  listRpportsOriginal;
   constructor(private httpClient: HttpClient, public router: Router, public rapportService: RapportService) { }
 
   ngOnInit(): void {
     this.httpClient.get("http://localhost:8088/rapports").subscribe(data=>{
       this.listRapports = data;
-      this.listRapports = this.listRapports._embedded.rapports;
+      this.listRapports = this.listRpportsOriginal = this.listRapports._embedded.rapports;
     }, err=>{
       console.log(err);
     })
@@ -29,11 +30,11 @@ export class RapportComponent implements OnInit {
   }
   Search(){
     if(this.titre == "") {
-      this.ngOnInit();
+      this.listRapports = this.listRpportsOriginal;
     }
     else{
       //this.users = this.listUser._embedded.users;
-      this.listRapports = this.listRapports.filter(res =>{
+      this.listRapports = this.listRpportsOriginal.filter(res =>{
         return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
       })
     }

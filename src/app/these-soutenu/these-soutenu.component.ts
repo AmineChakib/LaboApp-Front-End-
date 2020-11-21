@@ -9,13 +9,14 @@ import { TheseSoutenuService } from '../services/these-soutenu.service';
 })
 export class TheseSoutenuComponent implements OnInit {
   public theseSoutenus;
+  public theseSoutenusOriginal;
   public titre;
   constructor(private httpClient: HttpClient, public router: Router, private theseSoutenuService: TheseSoutenuService) { }
 
   ngOnInit(): void {
     this.theseSoutenuService.getTheses().subscribe(data =>{
       this.theseSoutenus = data;
-      this.theseSoutenus = this.theseSoutenus._embedded.theseSoutenus;
+      this.theseSoutenus = this.theseSoutenusOriginal = this.theseSoutenus._embedded.theseSoutenus;
       //console.log(this.theseSoutenus._embedded.theseSoutenus);
     }, err => {
       console.log(err);
@@ -35,12 +36,11 @@ export class TheseSoutenuComponent implements OnInit {
   }
   Search(){
     if(this.titre == "") {
-      this.ngOnInit();
+      this.theseSoutenus = this.theseSoutenusOriginal;
     }
     else{
       //this.users = this.listUser._embedded.users;
-
-        this.theseSoutenus = this.theseSoutenus.filter(res =>{
+        this.theseSoutenus = this.theseSoutenusOriginal.filter(res =>{
           return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
         })
 

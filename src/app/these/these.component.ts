@@ -12,12 +12,13 @@ export class TheseComponent implements OnInit {
 
   public theses;
   public titre;
+  public thesesOriginal;
   constructor(private httpClient: HttpClient, public router: Router, private theseService: TheseService) { }
 
   ngOnInit(): void {
     this.theseService.getTheses().subscribe(data =>{
       this.theses = data;
-      this.theses = this.theses._embedded.theses;
+      this.theses = this.thesesOriginal = this.theses._embedded.theses;
     }, err=>{
       console.log(err);
     })
@@ -36,11 +37,11 @@ export class TheseComponent implements OnInit {
   }
   Search(){
     if(this.titre == "") {
-      this.ngOnInit();
+      this.theses = this.thesesOriginal;
     }
     else{
       //this.users = this.listUser._embedded.users;
-      this.theses = this.theses.filter(res =>{
+      this.theses = this.thesesOriginal.filter(res =>{
         return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
       })
     }

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersComponent implements OnInit {
 
+  listUsersOriginal;
   listUser;
   username: any;
   constructor(private httpClient: HttpClient, public router: Router, private userService: UserService) { }
@@ -17,7 +18,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers2().subscribe(data=>{
       this.listUser = data;
-      this.listUser = this.listUser._embedded.users;
+      this.listUser = this.listUsersOriginal = this.listUser._embedded.users;
     }, err=>{
       console.log(err);
     })
@@ -40,11 +41,11 @@ export class UsersComponent implements OnInit {
   }
   Search(){
     if(this.username == "") {
-      this.ngOnInit();
+      this.listUser = this.listUsersOriginal;
     }
     else{
       //this.users = this.listUser._embedded.users;
-      this.listUser = this.listUser.filter(res =>{
+      this.listUser = this.listUsersOriginal.filter(res =>{
         return res.username.toLocaleLowerCase().match(this.username.toLocaleLowerCase());
       })
     }
