@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-us',
@@ -13,14 +14,16 @@ export class UsersComponent implements OnInit {
   listUsersOriginal;
   listUser;
   username: any;
-  constructor(private httpClient: HttpClient, public router: Router, private userService: UserService) { }
+  constructor(private httpClient: HttpClient, public router: Router,
+     private userService: UserService, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers2().subscribe(data=>{
+    this.userService.getUsers().subscribe(data=>{
       this.listUser = data;
       this.listUser = this.listUsersOriginal = this.listUser._embedded.users;
     }, err=>{
-      console.log(err);
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
     })
   }
   updateUser(id: number){
@@ -28,7 +31,7 @@ export class UsersComponent implements OnInit {
   }
   deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe(data =>{
-      this.userService.getUsers2().subscribe(data =>{
+      this.userService.getUsers().subscribe(data =>{
         this.listUser = data;
         this.listUser = this.listUser._embedded.users;
       })

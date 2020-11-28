@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RapportService } from 'src/app/services/rapport.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-rapport',
@@ -15,14 +16,15 @@ export class RapportComponent implements OnInit {
   listRpportsOriginal;
   closeResult = '';
   constructor(private httpClient: HttpClient, public router: Router, public rapportService: RapportService,
-     private modalService: NgbModal) { }
+     private modalService: NgbModal, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.httpClient.get("http://localhost:8088/rapports").subscribe(data=>{
+    this.rapportService.getRapports().subscribe(data=>{
       this.listRapports = data;
       this.listRapports = this.listRpportsOriginal = this.listRapports._embedded.rapports;
     }, err=>{
-      console.log(err);
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
     })
   }
   updateRapport(id: number) {

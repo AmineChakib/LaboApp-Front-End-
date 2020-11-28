@@ -18,6 +18,8 @@ import { UpdateTheseComponent } from './these/update-these/update-these.componen
 import { CreateTheseSoutenuComponent } from './these-soutenu/create-these-soutenu/create-these-soutenu.component';
 import { UpdateTheseSoutenuComponent } from './these-soutenu/update-these-soutenu/update-these-soutenu.component';
 import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport.component';
+import { LoginComponent } from './login/login.component';
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport
     CreateTheseSoutenuComponent,
     UpdateTheseSoutenuComponent,
     UpdateRapportComponent,
+    LoginComponent,
+    ConfirmEqualValidatorDirective,
   ],
   imports: [
     BrowserModule,

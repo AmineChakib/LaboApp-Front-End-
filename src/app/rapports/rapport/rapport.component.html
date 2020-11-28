@@ -1,3 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <a class="navbar-brand" href="https://www.ensaf.ac.ma/?controller=pages&action=home" target="_blank">ENSA de Fès</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/users">Users<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/rapports">Rapports<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Thèses<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/theses">Thèses en cours</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/theseSoutenus">Thèses soutenu</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <!--<button class="nav-link" routerLink="/rapports"><h4 class="modal-title" style="font-family:verdana; font-size:100%;color:rgb(10, 9, 9);">Authentification</h4></button>-->
+      <button type="button" class="btn btn-outline-danger" (click)= "authService.logout()">Se déconnecter</button>
+    </form>
+    <!--
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+  </div>
+</nav>
 <br><br><br>
 <div class="container" *ngIf="listRapports">
   <div class="panel panel-primary">
@@ -39,8 +76,8 @@
                 </div>
               </ng-template>-->
 
-              <button (click)="updateRapport(r.id)" class="btn btn-info"> Update</button>
-              <button (click)="deleteRapport(r.id)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+              <button (click)="updateRapport(r.id)" class="btn btn-info" *ngIf="authService.isAdmin()"> Update</button>
+              <button (click)="deleteRapport(r.id)" class="btn btn-danger" style="margin-left: 10px" *ngIf="authService.isAdmin()"> Delete</button>
             </td>
           </tr>
       </table>

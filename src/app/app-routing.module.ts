@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EquipesComponent } from './equipes/equipes.component';
+import { LoginComponent } from './login/login.component';
 import { CreateRapportComponent } from './rapports/create-rapport/create-rapport.component';
 import { RapportComponent } from './rapports/rapport/rapport.component';
 import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport.component';
@@ -16,6 +17,9 @@ import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
+  {path: "login", component: LoginComponent},
+  {path: "", component: LoginComponent},
+
   {path: "users", component: UsersComponent},
   {path: "create-user", component: CreateUserComponent},
   {path: "update-user/:id", component: UpdateUserComponent},
@@ -33,6 +37,9 @@ const routes: Routes = [
   {path: "theseSoutenus", component: TheseSoutenuComponent},
   {path: "create-theseSoutenu", component: CreateTheseSoutenuComponent},
   {path: "update-theseSoutenu/:id", component: UpdateTheseSoutenuComponent},
+
+  /*{ path: '',   redirectTo: '/first-component', pathMatch: 'full' },*/
+  /*{ path: "**", component: PageNotFoundCompo }, */
 ];
 
 @NgModule({
