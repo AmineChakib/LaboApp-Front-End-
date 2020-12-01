@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 import { TheseService } from '../services/these.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class TheseComponent implements OnInit {
   public theses;
   public titre;
   public thesesOriginal;
-  constructor(private httpClient: HttpClient, public router: Router, private theseService: TheseService) { }
+  constructor(private httpClient: HttpClient, public router: Router, private theseService: TheseService,
+     public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.theseService.getTheses().subscribe(data =>{

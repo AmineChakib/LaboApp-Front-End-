@@ -17,7 +17,6 @@ export class UserService {
   }
   createUser(user: User): Observable<object> {
     if(this.jwtToken == null) this.loadToken();
-    console.log(user.isAdmin);
     return this.http.post(this.host + "/create-user", user, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
 
   }

@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/users">Users <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/users" *ngIf="authService.isAdmin()">Users <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/rapports">Rapports <span class="sr-only">(current)</span></a>
@@ -51,8 +51,8 @@
             <td>{{t.titre}}</td>
             <td>{{t.date | date: 'dd/MM/yyyy'}}</td>
             <td>
-              <button class="btn btn-info" (click)="updateThese(t.id)"> Update</button>
-              <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteThese(t.id)"> Delete</button>
+              <button class="btn btn-info btn-sm" (click)="updateThese(t.id)"> Update</button>
+              <button class="btn btn-danger btn-sm" style="margin-left: 10px" (click)="deleteThese(t.id)"> Delete</button>
             </td>
           </tr>
       </table>

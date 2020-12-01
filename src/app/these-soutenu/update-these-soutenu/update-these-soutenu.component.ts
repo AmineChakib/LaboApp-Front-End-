@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TheseSoutenuService } from 'src/app/services/these-soutenu.service';
 import { TheseSoutenu } from '../these-soutenu';
 
@@ -12,7 +13,7 @@ export class UpdateTheseSoutenuComponent implements OnInit {
   id: number;
   public theseSoutenu: TheseSoutenu = new TheseSoutenu();
   constructor(private theseSoutenuService: TheseSoutenuService, private route: ActivatedRoute,
-     private router: Router) { }
+     private router: Router, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];

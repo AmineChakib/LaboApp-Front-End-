@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TheseService } from 'src/app/services/these.service';
 import { These } from '../these';
 
@@ -11,7 +12,7 @@ import { These } from '../these';
 export class CreateTheseComponent implements OnInit {
   public these: These = new These();
   constructor(private theseService: TheseService,
-    private router: Router) { }
+    private router: Router, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }

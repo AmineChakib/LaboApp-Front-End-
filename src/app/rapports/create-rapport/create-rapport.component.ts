@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RapportService } from 'src/app/services/rapport.service';
 import { Rapport } from '../rapport';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateRapportComponent implements OnInit {
   public host: string = "http://localhost:8088/postFile";
   constructor(private rapportService: RapportService,
     private router: Router,
-    private http: HttpClient) { }
+    private http: HttpClient, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }

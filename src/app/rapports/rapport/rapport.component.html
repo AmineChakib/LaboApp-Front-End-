@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/users">Users<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/users" *ngIf="authService.isAdmin()">Users<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/rapports">Rapports<span class="sr-only">(current)</span></a>
@@ -76,8 +76,8 @@
                 </div>
               </ng-template>-->
 
-              <button (click)="updateRapport(r.id)" class="btn btn-info" *ngIf="authService.isAdmin()"> Update</button>
-              <button (click)="deleteRapport(r.id)" class="btn btn-danger" style="margin-left: 10px" *ngIf="authService.isAdmin()"> Delete</button>
+              <button (click)="updateRapport(r.id)" class="btn btn-info btn-sm" *ngIf="authService.isAdmin()"> Update</button>
+              <button (click)="deleteRapport(r.id)" class="btn btn-danger btn-sm" style="margin-left: 10px" *ngIf="authService.isAdmin()"> Delete</button>
             </td>
           </tr>
       </table>

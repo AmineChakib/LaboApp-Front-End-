@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RapportService } from 'src/app/services/rapport.service';
 import { Rapport } from '../rapport';
 
@@ -19,7 +20,7 @@ export class UpdateRapportComponent implements OnInit {
   constructor(private rapportService: RapportService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal) { }
+    private router: Router, private modalService: NgbModal, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];

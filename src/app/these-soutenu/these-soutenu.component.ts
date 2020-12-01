@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 import { TheseSoutenuService } from '../services/these-soutenu.service';
 @Component({
   selector: 'app-these-soutenu',
@@ -11,7 +12,8 @@ export class TheseSoutenuComponent implements OnInit {
   public theseSoutenus;
   public theseSoutenusOriginal;
   public titre;
-  constructor(private httpClient: HttpClient, public router: Router, private theseSoutenuService: TheseSoutenuService) { }
+  constructor(private httpClient: HttpClient, public router: Router, private theseSoutenuService: TheseSoutenuService,
+     public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.theseSoutenuService.getTheses().subscribe(data =>{

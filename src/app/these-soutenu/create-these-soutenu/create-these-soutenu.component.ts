@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TheseSoutenuService } from 'src/app/services/these-soutenu.service';
 import { TheseSoutenu } from '../these-soutenu';
 
@@ -11,7 +12,7 @@ import { TheseSoutenu } from '../these-soutenu';
 export class CreateTheseSoutenuComponent implements OnInit {
   public theseSoutenu: TheseSoutenu = new TheseSoutenu();
   constructor(private theseSoutenuService: TheseSoutenuService,
-    private router: Router) { }
+    private router: Router, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }

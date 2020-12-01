@@ -38,7 +38,7 @@
 <br><br><br>
 <div class="container" *ngIf="listUser">
   <div class="panel panel-primary">
-    <div class="panel-heading"><h1 style="font-family:verdana;">Liste des utilisateur:</h1></div><br>
+    <div class="panel-heading"><h1 style="font-family:verdana;">Liste des utilisateurs:</h1></div><br>
   <!-- Search form -->
   <form class="form-inline d-flex pull-right md-form form-sm active-purple-2 mt-2">
     <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Enter CNE to Search"
@@ -57,8 +57,8 @@
             <td>{{u.prenom}}</td>
             <td>{{u.fonction}}</td>
             <td>
-              <button (click)="updateUser(u.id)" class="btn btn-info"  *ngIf="authService.isAdmin()"> Update</button>
-              <button (click)="deleteUser(u.id)" class="btn btn-danger" style="margin-left: 10px"  *ngIf="authService.isSuperAdmin()"> Delete</button>
+              <button (click)="updateUser(u.id)" class="btn btn-info btn-sm"  *ngIf="authService.isAdmin()"> Update</button>
+              <button (click)="deleteUser(u.id)" class="btn btn-danger btn-sm" style="margin-left: 10px"  *ngIf="authService.isSuperAdmin()"> Delete</button>
             </td>
           </tr>
       </table>
