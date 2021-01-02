@@ -22,7 +22,8 @@ export class TheseComponent implements OnInit {
       this.theses = data;
       this.theses = this.thesesOriginal = this.theses._embedded.theses;
     }, err=>{
-      console.log(err);
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
     })
   }
   updateThese(id: number){

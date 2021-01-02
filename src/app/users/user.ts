@@ -9,8 +9,9 @@ export class User {
   public fonction: string;
   public isAdmin: boolean = false;
   public isSuperAdmin: boolean = false;
+  public isProf: boolean = false;
 
-  constructor(id?, username?, email?, nom?, prenom?, pwd?, fonction?, repwd?, admin?, superAdmin?) {
+  constructor(id?, username?, email?, nom?, prenom?, pwd?, fonction?, repwd?, admin?, superAdmin?, prof?) {
     this.id = id;
     this.username = username;
     this.email = email;
@@ -21,5 +22,6 @@ export class User {
     this.repassword = repwd;
     this.isAdmin = admin;
     this.isSuperAdmin = superAdmin;
+    this.isProf = prof;
   }
 }

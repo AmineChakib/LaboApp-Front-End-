@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="authService.isUser()">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <a class="navbar-brand" href="https://www.ensaf.ac.ma/?controller=pages&action=home" target="_blank">ENSA de Fès</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/users">Users <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/rapports">Rapports <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Thèses<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/theses">Thèses en cours</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/theseSoutenus">Thèses soutenu</a>
+        </div>
+      </li>
+    </ul>
+    <!--
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+  </div>
+</nav>
+<div class="col-md-6 offset-md-3">
+  <br>
+  <h3 *ngIf="authService.isUser()">Create Rapport</h3>
+  <h1 class="col-md-8 offset-md-5" *ngIf="!authService.isUser()">Not Found!!</h1>
+  <form (ngSubmit)="onSubmit()" action="" *ngIf="authService.isUser()">
+    <div class="form-group">
+      <label for="">Autheur</label>
+      <input type="text" class="form-control" id="author" [(ngModel)] = "rapportprof.autheur" name='Autheur'>
+    </div>
+
+
+    <div class="form-group">
+      <label for="">Titre</label>
+      <input type="text" class="form-control" id="title" [(ngModel)] = "rapportprof.titre" name='titre'>
+    </div>
+    <div class="form-group">
+      <label for="">SousAutheur</label>
+      <input type="text" class="form-control" id="underauthor" [(ngModel)] = "rapportprof.sousautheur" name='sousautheur'>
+      <select name="roles" id="roles">
+        <option value="Doctorant">Doctorant</option>
+        <option value="Invité">Invité</option>
+        <option value="Enseignant">Enseignant</option>
+
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Description</label>
+      <input type="text" class="form-control" id="description" [(ngModel)] = "rapportprof.descritpion" name='description'>
+    </div>
+    <div class="form-group">
+      <label for="">Volume</label>
+      <input type="number" class="form-control" id="volume" [(ngModel)] = "rapportprof.volume" name='volume'>
+    </div>
+    <div class="form-group">
+      <label for="">issue</label>
+      <input type="number" class="form-control" id="issue" [(ngModel)] = "rapportprof.issue" name='issue'>
+    </div>
+    <div class="form-group">
+      <label for="">Date</label>
+      <input type="number" class="form-control" id="Date" [(ngModel)] = "rapportprof.date" name='Date'>
+    </div>
+    <div class="form-group">
+      <label for="">Numero</label>
+      <input type="number" class="form-control" id="numero" [(ngModel)] = "rapportprof.numero" name='numero'>
+    </div>
+    <div class="form-group">
+      <label for="">Pages</label>
+      <input type="number" class="form-control" id="pages" [(ngModel)] = "rapportprof.page" name='pages'>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file" id="file" (change)="onFileSelected($event)" [(ngModel)] = "rapportprof.file" name="file">
+    </div>
+
+    <button class="btn btn-success" type="submit" (click) = "onUpload(rapportprof.titre)">Ajouter</button>
+  </form>
+
+</div>

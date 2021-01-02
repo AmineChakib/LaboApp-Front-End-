@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="authService.isUser()">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <a class="navbar-brand" href="https://www.ensaf.ac.ma/?controller=pages&action=home" target="_blank">ENSA de Fès</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +31,10 @@
     </form>-->
   </div>
 </nav>
-<div class="col-md-6 offset-md-3">
-  <br>
-  <h3>Create Rapport</h3>
+<br>
+<h2 class="col-md-8 offset-md-5" *ngIf="authService.isUser()">Ajouter un Rapport:</h2>
+<h1 class="col-md-8 offset-md-5" *ngIf="!authService.isUser()">Not Found!!</h1>
+<div class="col-md-6 offset-md-3" *ngIf="authService.isUser()">
 <form (ngSubmit)="onSubmit()" action="">
   <div class="form-group">
     <label for="">Title</label>

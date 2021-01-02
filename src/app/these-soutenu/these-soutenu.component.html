@@ -37,7 +37,7 @@
     <div class="panel-heading"><h1 style="font-family:verdana;">Liste des Thèses Soutenus:</h1></div><br>
   <!-- Search form -->
   <form class="form-inline d-flex pull-right md-form form-sm active-purple-2 mt-2">
-    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Enter titre to Search"
+    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Thèse"
     aria-label="Search" name="titre" [(ngModel)] = "titre" (ngModelChange)="Search()">
       <i class="fa fa-search" aria-hidden="true"></i>
   </form>
@@ -51,8 +51,8 @@
             <td>{{t.titre}}</td>
             <td>{{t.date | date: 'dd/MM/yyyy'}}</td>
             <td>
-              <button class="btn btn-info btn-sm" (click)="updateThese(t.id)"> Update</button>
-              <button class="btn btn-danger btn-sm" style="margin-left: 10px" (click)="deleteThese(t.id)"> Delete</button>
+              <button class="btn btn-info btn-sm" (click)="updateThese(t.id)" *ngIf="authService.isSuperAdmin()"> Modifier</button>
+              <button class="btn btn-danger btn-sm" style="margin-left: 10px" (click)="deleteThese(t.id)" *ngIf="authService.isSuperAdmin()"> Supprimer</button>
             </td>
           </tr>
       </table>

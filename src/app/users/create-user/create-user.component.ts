@@ -16,6 +16,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class CreateUserComponent implements OnInit{
 
   public user: User = new User();
+  public mode: number = 0;
   constructor(private userService: UserService,
     private router: Router,  public authService: AuthenticationService) { }
 
@@ -32,22 +33,12 @@ export class CreateUserComponent implements OnInit{
       console.log(data);
       this.goToUserList();
     },
-    err => catchError(this.handleError));
+    err => {
+      this.mode = 1;
+    });
   }
   goToUserList(){
     this.router.navigate(['/users']);
-  }
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
   }
 
   public fonctions = [

@@ -41,15 +41,15 @@
     <div class="panel-heading"><h1 style="font-family:verdana;">Liste des utilisateurs:</h1></div><br>
   <!-- Search form -->
   <form class="form-inline d-flex pull-right md-form form-sm active-purple-2 mt-2">
-    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Enter CNE to Search"
+    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="CNE"
     aria-label="Search" name="username" [(ngModel)] = "username" (ngModelChange)="Search()">
       <i class="fa fa-search" aria-hidden="true"></i>
   </form>
-    <button class="btn btn-success" (click)="router.navigate(['/create-user']);"  *ngIf="authService.isAdmin()"><i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
+    <button class="btn btn-success" (click)="router.navigate(['/create-user']);"><i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
     <div class="panel-body table-responsive text-nowrap">
       <table class="table table-striped">
           <tr>
-            <th>CNE</th><th>Nom</th><th>Prénom</th><th>Métier</th><th  *ngIf="authService.isAdmin()">Actions</th>
+            <th>CNE</th><th>Nom</th><th>Prénom</th><th>Métier</th><th  *ngIf="authService.isSuperAdmin()"> Actions</th>
           </tr>
           <tr *ngFor="let u of listUser">
             <td>{{u.username}}</td>
@@ -57,8 +57,8 @@
             <td>{{u.prenom}}</td>
             <td>{{u.fonction}}</td>
             <td>
-              <button (click)="updateUser(u.id)" class="btn btn-info btn-sm"  *ngIf="authService.isAdmin()"> Update</button>
-              <button (click)="deleteUser(u.id)" class="btn btn-danger btn-sm" style="margin-left: 10px"  *ngIf="authService.isSuperAdmin()"> Delete</button>
+              <button (click)="updateUser(u.id)" class="btn btn-info btn-sm"  *ngIf="authService.isSuperAdmin()"> Modifier</button>
+              <button (click)="deleteUser(u.id)" class="btn btn-danger btn-sm" style="margin-left: 10px"  *ngIf="authService.isSuperAdmin()"> Supprimer</button>
             </td>
           </tr>
       </table>

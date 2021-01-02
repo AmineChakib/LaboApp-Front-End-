@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EquipesComponent } from './equipes/equipes.component';
 import { LoginComponent } from './login/login.component';
+import { CreateRapportProfComponent } from './rapports/create-rapport-prof/create-rapport-prof.component';
 import { CreateRapportComponent } from './rapports/create-rapport/create-rapport.component';
 import { RapportComponent } from './rapports/rapport/rapport.component';
 import { UpdateRapportComponent } from './rapports/update-rapport/update-rapport.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: "rapports", component: RapportComponent},
   {path: "create-rapport", component: CreateRapportComponent},
   {path: "update-rapport/:id", component: UpdateRapportComponent},
+  {path: "create-rapport-prof", component: CreateRapportProfComponent},
 
   {path: "theses", component: TheseComponent},
   {path: "create-these", component: CreateTheseComponent},

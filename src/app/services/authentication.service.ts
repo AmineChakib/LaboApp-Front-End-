@@ -29,6 +29,33 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
+  securePath() {
+    if(!this.isUser()) {
+      this.logout();
+    }
+  }
+  isUser() {
+    this.jwtToken = localStorage.getItem('token');
+    if (this.jwtToken == null) return false;
+    let jwtHelper = new JwtHelper();
+    this.roles = jwtHelper.decodeToken(this.jwtToken).role;
+    for (let r of this.roles) {
+      if (r.authority == 'USER') return true;
+    }
+    return false;
+    //if(this.jwtToken == null)
+  }
+
+  isProf() {
+    this.jwtToken = localStorage.getItem('token');
+    if (this.jwtToken == null) return false;
+    let jwtHelper = new JwtHelper();
+    this.roles = jwtHelper.decodeToken(this.jwtToken).role;
+    for (let r of this.roles) {
+      if (r.authority == 'PROF') return true;
+    }
+    return false;
+  }
 
   isAdmin() {
     this.jwtToken = localStorage.getItem('token');

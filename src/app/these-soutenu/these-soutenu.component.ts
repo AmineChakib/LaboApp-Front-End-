@@ -21,7 +21,8 @@ export class TheseSoutenuComponent implements OnInit {
       this.theseSoutenus = this.theseSoutenusOriginal = this.theseSoutenus._embedded.theseSoutenus;
       //console.log(this.theseSoutenus._embedded.theseSoutenus);
     }, err => {
-      console.log(err);
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
     })
   }
   updateThese(id: number){

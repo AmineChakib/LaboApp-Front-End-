@@ -31,8 +31,12 @@
     </form>-->
   </div>
 </nav>
-<h2 class="col-md-8 offset-md-5">Create User</h2>
+<br>
+<h2 class="col-md-8 offset-md-5">Ajouter un utilisateur:</h2>
 <div class="col-md-6 offset-md-3">
+  <div class="alert alert-danger" *ngIf="mode==1">
+    <strong>Le CNE doit être unique ...</strong>
+  </div>
 <form (ngSubmit)="onSubmit()" ngNativeValidate>
   <div class="form-group" [class.has-error]= "prenomControl.invalid && prenomControl.touched">
     <label for="prenom" class="control-label">First Name</label>

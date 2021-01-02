@@ -41,15 +41,19 @@
     <div class="panel-heading"><h1 style="font-family:verdana;">Liste des Rapports:</h1></div><br>
       <!-- Search form -->
   <form class="form-inline d-flex pull-right md-form form-sm active-purple-2 mt-2">
-    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Enter titre to Search"
+    <input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Titre"
     aria-label="Search" name="titre" [(ngModel)] = "titre" (ngModelChange)="Search()">
       <i class="fa fa-search" aria-hidden="true"></i>
   </form>
-    <button class="btn btn-success" (click)="router.navigate(['/create-rapport']);"><i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
+    <button class="btn btn-success" (click)="router.navigate(['/create-rapport']);" *ngIf="!authService.isProf()">
+      <i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
+    <button class="btn btn-success" (click)="router.navigate(['/create-rapport-prof']);" *ngIf="authService.isProf()">
+        <i class="fa fa-user-plus"></i> Ajouter</button><br><br><br>
     <div class="panel-body">
+
       <table class="table table-striped">
           <tr>
-            <th>Nom</th><th>Rapport</th><th>Actions</th>
+            <th>Titre</th><th>Rapport</th><th *ngIf="authService.isAdmin()">Actions</th>
           </tr>
           <tr *ngFor="let r of listRapports">
             <td>{{r.titre}}</td>
@@ -76,8 +80,8 @@
                 </div>
               </ng-template>-->
 
-              <button (click)="updateRapport(r.id)" class="btn btn-info btn-sm" *ngIf="authService.isAdmin()"> Update</button>
-              <button (click)="deleteRapport(r.id)" class="btn btn-danger btn-sm" style="margin-left: 10px" *ngIf="authService.isAdmin()"> Delete</button>
+              <button (click)="updateRapport(r.id)" class="btn btn-info btn-sm" *ngIf="authService.isAdmin()"> Modifier</button>
+              <button (click)="deleteRapport(r.id)" class="btn btn-danger btn-sm" style="margin-left: 10px" *ngIf="authService.isAdmin()"> Supprimer</button>
             </td>
           </tr>
       </table>

@@ -97,14 +97,23 @@
 </head>
 <body>
 <div class="login-form">
-    <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+    <form #f="ngForm" (ngSubmit)="onLogin(f.value)" ngNativeValidate>
       <div class="avatar"></div>
-    	<h4 class="modal-title" style="font-family:verdana; font-size:300%;color:whitesmoke;">Authentification</h4>
+      <h4 class="modal-title" style="font-family:verdana; font-size:300%;color:whitesmoke;">Authentification</h4>
+      <div class="alert alert-danger" *ngIf="mode==1">
+        <strong>CNE ou Mot de passe incorrect ...</strong>
+      </div>
         <div class="form-group">
-            <input class="form-control"  ngModel="" type="text" name="username" type="text" placeholder="Username" required>
+            <input class="form-control"  ngModel="" type="text" name="username" type="text" placeholder="CNE"
+            [(ngModel)] = "f.name" #usernameControl="ngModel" required>
+            <span class="text-danger" *ngIf="usernameControl.invalid && usernameControl.touched">
+              <strong>Veuillez saisir le CNE</strong></span>
         </div>
         <div class="form-group">
-            <input class="form-control" ngModel="" type="password" name="pwd" placeholder="Password" required="required">
+            <input class="form-control" ngModel="" type="password" name="pwd" placeholder="Mot de pass"
+            [(ngModel)] = "f.options" #passwordControl="ngModel" required>
+            <span class="text-danger" *ngIf="passwordControl.invalid && passwordControl.touched">
+              <strong>Veuillez saisir le Mot de passe</strong></span>
         </div>
         <input type="submit" class="btn btn-success btn-block btn-lg" value="Login">
     </form>
