@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../user';
 
@@ -14,7 +15,7 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];

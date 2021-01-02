@@ -45,10 +45,12 @@
     <div class="panel-body table-responsive text-nowrap">
       <table class="table table-striped">
           <tr>
-            <th>Thèses</th><th>Soutenue le:</th><th>Actions</th>
+            <th>Thèses</th><th>Responsable</th><th>Axe de recherche</th><th>Soutenue le:</th><th>Actions</th>
           </tr>
           <tr *ngFor="let t of theseSoutenus">
             <td>{{t.titre}}</td>
+            <td>{{t.responsable}}</td>
+            <td>{{t.axe_recherch}}</td>
             <td>{{t.date | date: 'dd/MM/yyyy'}}</td>
             <td>
               <button class="btn btn-info btn-sm" (click)="updateThese(t.id)" *ngIf="authService.isSuperAdmin()"> Modifier</button>

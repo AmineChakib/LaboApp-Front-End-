@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/users">Users <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/users" *ngIf="authService.isAdmin()">Users <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/rapports">Rapports <span class="sr-only">(current)</span></a>
@@ -24,6 +24,10 @@
         </div>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <!--<button class="nav-link" routerLink="/rapports"><h4 class="modal-title" style="font-family:verdana; font-size:100%;color:rgb(10, 9, 9);">Authentification</h4></button>-->
+      <button type="button" class="btn btn-outline-danger" (click)= "authService.logout()">Se déconnecter</button>
+    </form>
     <!--
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

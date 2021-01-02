@@ -45,10 +45,12 @@
     <div class="panel-body table-responsive text-nowrap">
       <table class="table table-striped">
           <tr>
-            <th>Thèses</th><th>Actions</th>
+            <th>Thèses</th><th>Responsable</th><th>Axe de recherche</th><th>Actions</th>
           </tr>
           <tr *ngFor="let t of theses">
             <td>{{t.titre}}</td>
+            <td>{{t.responsable}}</td>
+            <td>{{t.axe_recherch}}</td>
             <td>
               <button class="btn btn-info btn-sm" (click)="updateThese(t.id)" *ngIf="authService.isSuperAdmin()"> Modifier</button>
               <button class="btn btn-danger btn-sm" style="margin-left: 10px" (click)="deleteThese(t.id)" *ngIf="authService.isSuperAdmin()"> Supprimer</button>
